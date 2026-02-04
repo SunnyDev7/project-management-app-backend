@@ -1,11 +1,20 @@
 import { APIResponse } from "../utils/api-response.js";
+import { asyncHandler } from "../utils/async-handler.js";
 
-const heatlhCheck = (req, res) => {
+/*
+const healthCheck = (req, res, next) => {
   try {
     res
       .status(200)
       .json(new APIResponse(200, { message: "Server is running" }));
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 };
+*/
 
-export { heatlhCheck };
+const healthCheck = asyncHandler(async (req, res) => {
+  res.status(200).json(new APIResponse(200, { message: "Server is Running" }));
+});
+
+export { healthCheck };
