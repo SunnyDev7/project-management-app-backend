@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
+import healthCheckRouter from "./routes/healthcheck.routes.js";
+
 const app = express();
 
 // basic configurations
@@ -18,6 +20,9 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
+
+//Health Check Route
+app.use("/api/v1/healthcheck", healthCheckRouter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to Project Management Backend");
