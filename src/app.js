@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import healthCheckRouter from "./routes/healthcheck.routes.js";
+import authRoutes from "./routes/auth.routes.js";
 
 const app = express();
 
@@ -23,6 +24,9 @@ app.use(
 
 //Health Check Route
 app.use("/api/v1/healthcheck", healthCheckRouter);
+
+//Auth
+app.use("/api/v1/auth", authRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to Project Management Backend");
